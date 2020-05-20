@@ -1,0 +1,275 @@
+	/*Credit to Free Code Camp Example of personal portfolio for the  media querries below which helped me a lot in making this project responsive.*/
+
+html {
+  box-sizing: border-box;
+  /* Set font size for easy rem calculations
+   * default document font size = 16px, 1rem = 16px, 100% = 16px
+   * (100% / 16px) * 10 = 62.5%, 1rem = 10px, 62.5% = 10px
+  */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+/* A few media query to set some font sizes at different screen sizes.
+ * This helps automate a bit of responsiveness.
+ * The trick is to use the rem unit for size values, margin and padding.
+ * Because rem is relative to the document font size
+ * when we scale up or down the font size on the document
+ * it will affect all properties using rem units for the values.
+*/
+
+/* I am using the em unit for breakpoints
+ * The calculation is the following
+ * screen size divided by browser base font size
+ * As an example: a breakpoint at 980px
+ * 980px / 16px = 61.25em
+*/
+
+	/*Credit to Free Code Camp Example of personal portfolio for the  media querries above which helped me a lot in making this project responsive.*/
+
+/* this one I wrote based on the calculation provided by example */
+
+/* 2560px / 16px = 160em */
+@media (max-width: 160em) {
+  html {
+    font-size: 80%;
+  }
+}
+
+	/*Credit to Free Code Camp Example of personal portfolio for the  media querries below which helped me a lot in making this project responsive.*/
+
+/* 1200px / 16px = 75em */
+@media (max-width: 75em) {
+  html {
+    font-size: 60%;
+  }
+}
+
+/* 980px / 16px = 61.25em */
+@media (max-width: 61.25em) {
+  html {
+    font-size: 58%;
+  }
+}
+
+/* 460px / 16px = 28.75em */
+@media (max-width: 28.75em) {
+  html {
+    font-size: 55%;
+  }
+}
+
+	/*Credit to Free Code Camp Example of personal portfolio for the  media querries above which helped me a lot in making this project responsive.*/
+
+body
+{
+	top: 0;
+	margin: 0;
+	font-family: sans-serif;
+	font-size: 1.4rem;
+	background-color: #444444;
+	color: #FFFFFF;
+}
+
+#container
+{
+	display: grid;
+	gap: 1rem;
+	grid-template: 
+	[row1-start] "navigation navigation navigation" auto [row1-end]
+	[row2-start] "header header header" 100vh [row2-end]
+	[row3-start] "main main main" auto [row3-end]
+	[row4-start] "footer footer footer" auto [row4-end] / 1fr 1fr 1fr;
+}
+
+/* credit to https://cssgradient.io/ for helping me generate gradient */
+
+#top
+{
+	background: rgb(68,68,68);
+	background: linear-gradient(142deg, rgba(68,68,68,1) 13%, rgba(48,48,48,1) 87%);
+	grid-area: header;
+
+}
+
+#welcome-section
+{
+	background: rgb(68,68,68);
+	background: linear-gradient(142deg, rgba(68,68,68,1) 13%, rgba(48,48,48,1) 87%);
+	height: 100vh;
+	text-align: center;
+	font-size: 4rem;
+}
+
+
+#navbar
+{
+	background-color: #ff337e;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+	grid-area: navigation;
+}
+
+#navbar > ul
+{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	list-style-type: none;
+	justify-items: center;
+}
+
+
+#content
+{
+	margin-top: 5rem;
+	background-color: #5ce6b3;
+	grid-area: main;
+	height: auto;
+}
+
+#projects
+{
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	justify-items: center;
+}
+
+.project-tile
+{
+	background-color: #ff337e;
+	margin: 1rem;
+	max-height: 1fr;
+	max-width: 1fr;
+	text-align: center;
+}
+
+.project-tile img
+{
+	max-width: 100%;
+}
+
+.project-tile p
+{
+	text-align: justify;
+	margin: 1rem;
+}
+
+.project-tile:hover
+{
+	background-color: #ff1760;
+}
+
+.card
+{
+	background-color: #ff337e;
+	margin: 1rem;
+}
+
+
+#about
+{
+	padding: 2.1em;
+}
+
+figure
+{
+	text-align: center;
+	background-color: #5ce6b3;
+	padding: 2em;
+}
+
+figcaption
+{
+	font-size: 1.5em;
+	text-align: center;
+	color: #ff337e;
+}
+
+figure img
+{
+	border: 0.5rem solid #ff337e;
+	border-radius: 50%;
+	max-width: 50%;
+}
+
+#contact
+{
+	background-color: #ff337e;
+	padding: 2.1em;
+}
+
+#contact form input
+{
+	height: 2em;
+}
+
+#contactform
+{
+	text-align: center;
+	padding: 2.1em;
+	background-color: #5ce6b3;
+	color: #ff337e;
+	width: auto;
+}
+
+#contactform input
+{
+	width: 100%;
+	margin-bottom: 2em;
+	height: 2em;
+
+}
+
+#contactform > #submitform
+{
+	width: 50%;
+	height: 3em;
+	padding: 0.3em;
+}
+
+textarea
+{
+	width: 100%;
+	height: 5em;
+	font-family: sans-serif;
+
+	margin-bottom: 2em;
+}
+
+#footer
+{
+	background-color: #444444;
+	grid-area: footer;
+}
+
+#social
+{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-items: center;
+}
+
+#copy
+{
+	text-align: center;
+}
+
+a
+{
+	text-decoration: none;
+	color: white;
+}
+
+a:visited
+{
+	color: white;
+}
+
+a:hover
+{
+	color: #17ffb6;
+}
