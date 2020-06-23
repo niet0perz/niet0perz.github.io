@@ -1,0 +1,117 @@
+<!doctype html>
+
+<html lang="en">
+
+<!-- EVERYTHING THAT IS NOT CONTENT BUT IS ESSENTIAL FOR THE WEBSITE TO WORK AS INTENDED -->
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <!-- GENERAL SITE INFO FOR SEARCH ENGINES AND SCREEN READERS -->
+    <title>Online Form</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Online form created by Mikołaj Wiktor Nowacki">
+    
+    <!-- LINKS TO CSS FILES ("STYLESHEET") AND SITE ICON, MAKE SURE EVERYTHING IS POINTING AT THE RIGHT FOLDER AND FILE NAME, YOU CAN PUT LINK TO GOOGLE FONTS OR FONTELLO HERE TOO -->
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="favicon.ico" type="image/x-icon" rel="shortcut icon" >
+    
+    <!-- FACEBOOK METADATA, INFO THAT FACEBOOK WILL SHOW WHEN YOU SHARE THE PAGE ON FB -->
+    <meta property="og:image" content="link to picture that will display on facebook post">
+    <meta property="og:description" content="description that will display on facebook post">
+    <meta property="og:title" content="title that will display on facebook post">
+    
+    <!-- TWITTER METADATA, INFO THAT TWITTER WILL SHOW WHEN YOU SHARE THE PAGE ON TWITTER -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="title that will display on twitter post">
+    <meta name="twitter:description" content="description that will display on twitter post">
+    <meta name="twitter:image" content="link to the picture that will display on twitter post">
+</head>
+
+<!-- THE CONTENT STARTS HERE -->
+
+<body>
+
+
+<div id="container">
+
+  <header>
+    <h1 id="title">FORM TITLE</h1>
+    <p id="description">SHORT AND SWEET FORM DESCRIPTION</p>
+  </header>
+  
+  <div id="sform">
+    <form id="survey-form">
+      <label id="name-label" for="name">Name: </label><br />
+      <input type="text" id="name" placeholder=" Your Name Here" required /><br />
+    
+      <hr />
+      
+      <label id="email-label" for="email">Email: </label><br />
+      <input type="email" id="email" placeholder=" Your Email Here" required /><br />
+    
+      <hr />
+      
+      <label id="number-label" for="number">Age: </label><br />
+      <input type="number" id="number" min="13" max="99" placeholder=" Your Age Here" /><br />
+      
+      <hr />
+      
+      <label for="dropdown">Choose an option: </label><br />
+      <select id="dropdown">
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+        <option>Option 4</option>
+      </select><br />
+      
+      <hr />
+      
+      <form id="radiobuttons">
+        <label for="radiobuttons">Select one: </label><br />
+        <label for="option 1"><input type="radio" name="option" value="option 1" />
+        Option 1</label><br />
+        
+        <label for="option 2"><input type="radio" name="option" value="option 2" />
+        Option 2</label><br />
+        
+        <label for="option 3"><input type="radio" name="option" value="option 3" />
+        Option 3</label><br />
+        
+        <label for="option 4"><input type="radio" name="option" value="option 4" />
+        Option 4</label><br />        
+     <hr />
+      <form id="checkboxes">
+        <label for="checkboxes">Select as many as you want</label><br />
+        
+        <label for="checkbox 1"><input type="checkbox" name="checkbox 1" value="checkbox 1" />Checkbox 1</label><br />
+        
+        <label for="checkbox 2"><input type="checkbox" name="checkbox 2" value="checkbox 2" />Checkbox 2</label><br />
+        
+        <label for="checkbox 3"><input type="checkbox" name="checkbox 3" value="checkbox 3" />Checkbox 3</label><br />
+        
+        <label for="checkbox 4"><input type="checkbox" name="checkbox 4" value="checkbox 4" />Checkbox 4</label><br />
+        
+        <label for="checkbox 5"><input type="checkbox" name="checkbox 5" value="checkbox 5" />Checkbox 5</label><br />
+        
+        <hr />
+        
+        <label for="textarea">Any suggestions? </label><br />
+        
+        <textarea id="textarea" placeholder="Write as much as you would like!"></textarea><br />
+        
+        <button id="submit">Submit</button>
+        
+      </form> 
+        
+    </form>
+    
+  </div>
+
+</div>
+
+</body>
+
+
+
+</html>
