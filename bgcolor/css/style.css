@@ -1,0 +1,26 @@
+html {
+  box-sizing: border-box;
+  /* default document font size = 16px, 1rem = 16px, 100% = 16px (100% / 16px) * 10 = 62.5%, 1rem = 10px, 62.5% = 10px */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+/* siatka stworzona w divie, który zawiera w sobie wszystkie pozostałe divy i treść. To jest div, który ma się zmieniać w @media, żeby było responsywnie */
+#container {
+	display: grid;
+	grid-template-columns: 1fr, 1fr, 1fr, 1fr;
+	grid-template-rows: 1fr, 1fr, 1fr, 1fr;
+	grid-template-areas: 
+	[header, header, header, header] /*nazwij jakoś to wszystko */
+	[profile, main, main, main]
+	[profile, main, main, main]
+	[profile, mian, main, main]
+	[footer, footer, footer, footer];
+}
+
+#tlo {
+	background-color: black;
+	padding: 500px;
+	justify-content: center;
+	text-align: center;
+}
