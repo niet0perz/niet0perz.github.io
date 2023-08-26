@@ -1,45 +1,164 @@
-<!doctype html>
-
-<html lang="en">
-
-<!-- EVERYTHING THAT IS NOT CONTENT BUT IS ESSENTIAL FOR THE WEBSITE TO WORK AS INTENDED -->
-
+<!DOCTYPE html>
+<html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-    <!-- GENERAL SITE INFO FOR SEARCH ENGINES AND SCREEN READERS -->
-    <title>Mikołaj Nowacki - Front End Developer</title>
-    <meta charset="utf-8">
-    <meta name="description" content="Portfolio Mikołaja Nowackiego, Front-End Developera, który specjalizuje się w JavaScript.">
-    
-    <!-- LINKS TO CSS FILES ("STYLESHEET") AND SITE ICON, MAKE SURE EVERYTHING IS POINTING AT THE RIGHT FOLDER AND FILE NAME, YOU CAN PUT LINK TO GOOGLE FONTS OR FONTELLO HERE TOO -->
-    <link href="css/style.css" type="text/css" rel="stylesheet">
-    <link href="favicon.ico" type="image/x-icon" rel="shortcut icon" >
-    
-    <!-- FACEBOOK METADATA, INFO THAT FACEBOOK WILL SHOW WHEN YOU SHARE THE PAGE ON FB -->
-    <meta property="og:image" content="link to picture that will display on facebook post">
-    <meta property="og:description" content="description that will display on facebook post">
-    <meta property="og:title" content="title that will display on facebook post">
-    
-    <!-- TWITTER METADATA, INFO THAT TWITTER WILL SHOW WHEN YOU SHARE THE PAGE ON TWITTER -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="title that will display on twitter post">
-    <meta name="twitter:description" content="description that will display on twitter post">
-    <meta name="twitter:image" content="link to the picture that will display on twitter post">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Syllable Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    textarea {
+      width: calc(70% - 20px); 
+      height: 300px;
+      resize: none;
+    }
+    #editor-container {
+      display: flex;
+      align-items: flex-start;
+      margin-top: 10px;
+    }
+    #editor {
+      flex: 1;
+      margin-right: 10px; 
+    }
+    #line-numbers,
+    #syllableCount {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      color: #666;
+      width: 40px; 
+    }
+    #line-numbers > div,
+    #syllableCount > div {
+      text-align: right;
+      margin-right: 5px;
+    }
+    .action-button {
+    margin-right: 10px;
+    font-size: 18px; 
+    padding: 10px 20px; 
+  }
+.action-button,
+  #language {
+    font-size: 18px; 
+    padding: 10px 20px; 
+  }
+
+    .language-and-save {
+      display: flex;
+      align-items: center;
+    }
+    .action-buttons {
+      display: flex;
+    }
+    .language-label {
+      margin-right: 10px;
+    }
+    .all-controls {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .all-controls > * {
+      margin-right: 10px;
+    }
+  </style>
 </head>
-
-<!-- THE CONTENT STARTS HERE -->
-
 <body>
+  <div class="all-controls">
+    <button class="action-button" onclick="createNewFile()">New File</button>
+    <button class="action-button" onclick="openFile()">Open</button>
+    <label class="language-label" for="language">Select Language:</label>
+    <select id="language">
+      <option value="pl">Polish</option>
+      <option value="en">English</option>
+    </select>
+    <button class="action-button" onclick="saveFile()">Save</button>
+  </div>
+  <div id="editor-container">
+    <div id="line-numbers"></div>
+    <textarea id="editor" oninput="updateLineNumbers()"></textarea>
+    <div id="syllableCount"></div>
+  </div>
+  <script>
+    function countSyllablesPL(word) {
+  var vowels = /[aeiouąęóyi]+/g; 
+  var syllables = word.toLowerCase().match(vowels);
+  return syllables ? syllables.length : 0;
+}
 
-	<div id="container">
-	
-		<div id=""></div>
-	
-	</div>
 
+    function countSyllablesEN(word) {
+  var vowels = /[aeiouy]+/g; 
+  var syllables = word.toLowerCase().match(vowels);
+  return syllables ? syllables.length : 0;
+}
+
+
+    function updateSyllableCount() {
+      const editorContent = document.getElementById('editor').value;
+      const lines = editorContent.split('\n');
+      const syllableCountDiv = document.getElementById('syllableCount');
+      syllableCountDiv.innerHTML = '';
+
+      const selectedLanguage = document.getElementById('language').value;
+      const countSyllablesFunc = selectedLanguage === 'pl' ? countSyllablesPL : countSyllablesEN;
+
+      lines.forEach(line => {
+        const syllables = line.split(/\s+/).map(word => countSyllablesFunc(word)).reduce((acc, val) => acc + val, 0);
+        syllableCountDiv.innerHTML += `<div>${syllables}</div>`;
+      });
+    }
+
+    function saveFile() {
+      const editorContent = document.getElementById('editor').value;
+      const blob = new Blob([editorContent], { type: 'text/plain' });
+      const anchor = document.createElement('a');
+      anchor.download = 'text.txt';
+      anchor.href = URL.createObjectURL(blob);
+      anchor.click();
+    }
+
+    function createNewFile() {
+      document.getElementById('editor').value = '';
+      document.getElementById('syllableCount').innerHTML = '';
+      updateLineNumbers();
+    }
+
+    function openFile() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.txt';
+      input.addEventListener('change', function () {
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          document.getElementById('editor').value = event.target.result;
+          updateSyllableCount();
+          updateLineNumbers();
+        };
+
+        reader.readAsText(file);
+      });
+
+      input.click();
+    }
+
+    function updateLineNumbers() {
+      const editorContent = document.getElementById('editor').value;
+      const lines = editorContent.split('\n');
+      const lineNumbersDiv = document.getElementById('line-numbers');
+      lineNumbersDiv.innerHTML = lines.map((_, index) => `<div>${index + 1}</div>`).join('');
+    }
+
+    const editor = document.getElementById('editor');
+    editor.addEventListener('input', () => {
+      updateSyllableCount();
+      updateLineNumbers();
+    });
+    document.getElementById('language').addEventListener('change', updateSyllableCount);
+  </script>
 </body>
-
-
-
 </html>
